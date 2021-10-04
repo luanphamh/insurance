@@ -74,11 +74,6 @@ namespace api
             {
                 endpoints.MapControllers();
             });
-            
-            RecurringJob.AddOrUpdate<IInsurance>(
-                "ScanAllFraudProfiles",
-                x => x.ScanAllFraudProfile(),
-                "0 17 * * *");
         }
     }
 }
