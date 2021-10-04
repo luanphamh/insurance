@@ -42,10 +42,14 @@ namespace Api
         {
             var existedInsurance = await GetByIdAsync(
                 insuranceDb => insuranceDb.ClaimCaseId == scanFraudProfileRequest.ClaimCaseId);
-
-            return existedInsurance == null 
-                ? null 
-                :await GetAsync(insuranceDb => insuranceDb.HasFraud == existedInsurance.HasFraud);
+                
+            if (existedInsurance == null)
+                return null;
+                
+            if (string.IsNullOrEmpty(existedInsurance.HasFraud))
+                return new List<Insurance>() {existedInsurance};
+                
+            return await GetAsync(insuranceDb => insuranceDb.HasFraud == existedInsurance.HasFraud);
         }
         
         public async Task<IEnumerable<Insurance>> GetProfilesByUserName(string userName)
