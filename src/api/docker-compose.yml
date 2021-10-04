@@ -1,0 +1,37 @@
+version: '3.4'
+
+networks:
+  dockerapi-dev:
+    driver: bridge
+
+services:
+  api:
+    image: api:latest
+    depends_on:
+      - "postgres"
+    build:
+      context: .
+      dockerfile: ./Dockerfile
+    ports:
+      - "8886:80"     
+    environment:
+      DB_CONNECTION_STRING: "User ID=kevinph;Password=kevinph;host=host.docker.internal;Port=5555;Database=testdb;Integrated Security=true;Pooling=true;"
+    networks:
+      - dockerapi-dev
+
+  postgres:
+    image: postgres:latest
+    ports:
+      - "5555:5432"
+    restart: always
+    volumes:
+      - db_volume:/var/lib/postgresql/data
+      - ./dbscripts/seed.sql :/docker-entrypoint-initdb.d/seed.sql
+    environment:
+      POSTGRES_USER: "kevinph"
+      POSTGRES_PASSWORD: "kevinph"
+      POSTGRES_DB: "testdb"
+    networks:
+      - dockerapi-dev
+volumes:
+  db_volume:
