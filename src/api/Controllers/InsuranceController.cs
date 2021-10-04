@@ -43,7 +43,7 @@ namespace api.Controllers
             return len switch
             {
                 1 => Ok(new { msg = "Fraud Not Found" }),
-                > 1 => Ok(new { msg = "Fraud Found", data = response.Where(claimCaseId => !claimCaseId.Equals(scanFraudProfileRequest.ClaimCaseId)) }),
+                > 1 => Ok(new { msg = "Fraud Found", related_claim_case_id = response.Where(claimCaseId => !claimCaseId.Equals(scanFraudProfileRequest.ClaimCaseId)) }),
                 _ => Ok(new { msg = "Not Found" })
             };
         }
