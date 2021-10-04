@@ -1,5 +1,5 @@
 # insurance
-A simple ASP.NET Core sample web application using .Net Web Api Core and PostgreSQL with Docker support.Both the Web Applicaiton and the Postgres DB runs in container. Added Swagger support to interact with API’s resources.
+A simple ASP.NET Core sample web application using .Net Web Api Core and PostgreSQL with Docker support.
 
 ## Prerequisites
 1. [Docker](https://www.docker.com/)
@@ -16,8 +16,8 @@ A simple ASP.NET Core sample web application using .Net Web Api Core and Postgre
 5.  Navigate to http://localhost:8887/swagger
 
 ## API
-1.  Get  http://localhost:8887/insurance: get all insurance records
+1.  Get  http://localhost:8887/insurance: api lấy tất cả hồ sơ bảo hiểm
 
-1.  Post http://localhost:8887/insurance: update or insert insurance records
+1.  Post http://localhost:8887/insurance: api nộp hồ sơ
 
-2.  Post http://localhost:8887/insurance/findFraudProfile: find fraudulent insurance records
+2.  Post http://localhost:8887/insurance/findFraudProfile: api trả về kết quả các hồ sơ gian lận 
