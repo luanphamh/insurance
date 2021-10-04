@@ -41,9 +41,11 @@ namespace api.Handler
                         AdmittedAt = profile.AdmittedAt,
                         DischargedAt = profile.DischargedAt
                     })).GetAwaiter().GetResult();
+                    
                 var userNames = profileRequestHandle
                     .Select(profile => profile.UserName)
                     .ToArray();
+                    
                 BackgroundJob.Enqueue(() =>
                     ScanFraudProfilesByUserName(
                         userNames));
@@ -77,14 +79,16 @@ namespace api.Handler
                 await ScanFraudProfileByUserName(userName, Guid.NewGuid().ToString());
             }
         }
+        
         public async Task ScanFraudProfileByUserName(string userName, string tick)
         {
             var insurancesDb = await _insuranceRepository.GetProfilesByUserName(userName);
-            
             var insureances = InsuranceHelper.TickFraudProfile(insurancesDb, tick);
-            if (insureances.Any())
+            
+            if (insureances?.Count() >1)
                 _insuranceRepository.UpdateRange(insureances);
         }
+        
         public async Task<IEnumerable<string>> FindFraudProfile(ScanFraudProfileRequest scanFraudProfileRequest)
         {
             var insurancesDb = await _insuranceRepository.GetFraudProfiles(scanFraudProfileRequest);
