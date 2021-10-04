@@ -39,7 +39,7 @@ namespace api.Controllers
         {
             var response = await _insurance.FindFraudProfile(scanFraudProfileRequest);
 
-            var len = response.Count();
+            var len = response?.Count();
             return len switch
             {
                 1 => Ok(new { msg = "Fraud Not Found" }),
