@@ -93,7 +93,7 @@ namespace api.Handler
         {
             var insurancesDb = await _insuranceRepository.GetFraudProfiles(scanFraudProfileRequest);
             
-            return insurancesDb.Where(x => !x.ClaimCaseId.Equals(scanFraudProfileRequest.ClaimCaseId))
+            return insurancesDb?
                 .Select(x=>x.ClaimCaseId).ToList();
         }
     }
