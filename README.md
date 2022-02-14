@@ -2,7 +2,7 @@
 A simple ASP.NET Core sample web application using .Net Web Api Core and PostgreSQL with Docker support.
 
 ## Prerequisites
-1. [Docker](https://www.docker.com/)
+1. [Docker]
 
 ## Steps
 1. `git clone https://github.com/luanphamh/insurance.git`
