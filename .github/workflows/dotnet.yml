@@ -17,11 +17,11 @@ jobs:
         dotnet-version: 5.0.x
         
     - name: Restore dependencies
-      run: dotnet restore
-      working-directory: src/api/api.csproj
+      run: dotnet restore "./api.csproj"
+      working-directory: src/api
     - name: Build
-      run: dotnet build --no-restore
-      working-directory: src/api/api.csproj
+      run: dotnet build --no-restore "./api.csproj"
+      working-directory: src/api
     - name: Test
-      run: dotnet test --no-build --verbosity normal
-      working-directory: src/api/api.csproj
+      run: dotnet test --no-build --verbosity normal "./api.csproj"
+      working-directory: src/api
