@@ -13,7 +13,7 @@ A simple ASP.NET Core sample web application using .Net Web Api Core and Postgre
 
 4. `docker-compose up`
 
-5.  Navigate to http://localhost:8887/swagger
+5.  Navigate to:  http://localhost:8887/swagger
 
 ## API
 1.  Get  http://localhost:8887/insurance: api lấy tất cả hồ sơ bảo hiểm
